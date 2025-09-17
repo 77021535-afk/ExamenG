@@ -1,12 +1,821 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="3; url=index2.html">
-  <title>Redirigiendo...</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía - Sistema de Gestión</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin: 20px 0 15px;
+            color: #fdbb2d;
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            margin: 15px 0 10px;
+            color: #4ecdc4;
+        }
+        
+        .team-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .team-member {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 15px;
+            width: 180px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+        
+        .member-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            background-color: #2c3e50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 3px solid #fdbb2d;
+        }
+        
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .placeholder-text {
+            color: #bbb;
+            font-size: 0.8rem;
+        }
+        
+        .content-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .tool-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stages {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .stage {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .stage-number {
+            background: #fdbb2d;
+            color: #1a2a6c;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .gallery-item {
+            background: rgba(255, 255, 255, 0.15);
+            height: 150px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .conclusions, .recommendations {
+            margin: 20px 0;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        li:before {
+            content: "✓";
+            color: #4ecdc4;
+            font-weight: bold;
+            position: absolute;
+            left: -20px;
+        }
+        
+        .icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        
+        /* Línea de tiempo */
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(to bottom, #fdbb2d, #1a2a6c);
+            border-radius: 10px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #fdbb2d;
+            border: 4px solid #1a2a6c;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #fdbb2d;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .difficulty {
+            color: #ff6b6b;
+            margin-top: 8px;
+            font-style: italic;
+        }
+        
+        /* Mapa de árbol mejorado */
+        .tree-diagram {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .tree {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .tree-level {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            position: relative;
+            width: 100%;
+        }
+        
+        .tree-node {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin: 0 15px;
+            min-width: 120px;
+            text-align: center;
+            position: relative;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+        
+        .root-node {
+            background: linear-gradient(135deg, #4ecdc4, #2a8f87);
+            font-weight: bold;
+        }
+        
+        .dependent-node {
+            background: linear-gradient(135deg, #fdbb2d, #d89c20);
+            font-weight: bold;
+        }
+        
+        .bridge-node {
+            background: linear-gradient(135deg, #ff6b6b, #d34f4f);
+            font-weight: bold;
+        }
+        
+        .connectors {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        
+        .vertical-connector {
+            position: absolute;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.5);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .horizontal-connector {
+            position: absolute;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        .node-connector {
+            position: absolute;
+            width: 2px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .tree-relationship {
+            font-size: 0.8rem;
+            color: #ccc;
+            margin-top: 5px;
+        }
+        
+        /* Sección de evidencias */
+        .evidence-section {
+            margin: 30px 0;
+        }
+        
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .evidence-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .evidence-item img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .evidence-title {
+            font-weight: bold;
+            color: #fdbb2d;
+            margin-bottom: 5px;
+        }
+        
+        @media (max-width: 900px) {
+            .tree-level {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tree-node {
+                margin: 10px 0;
+            }
+            
+            .connectors {
+                display: none;
+            }
+            
+            .evidence-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .team-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stage {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .stage-number {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .timeline {
+                padding-left: 20px;
+            }
+            
+            .timeline-item::before {
+                left: -30px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>Redirigiendo a la página principal...</h1>
-  <p>Si no ocurre nada, haz clic <a href="index2.html">aquí</a>.</p>
+    <div id="particles-js"></div>
+    
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-chart-line"></i> Infografía: Desarrollo de un Sistema de Gestión</h1>
+            <h2><i class="fas fa-users"></i> Equipo de Desarrollo</h2>
+            <h3>Diseño Pachamámico</h3>
+        </header>
+        
+        <section class="team-section">
+            <div class="team-member">
+                <div class="member-photo">
+                    <img src="C:\Users\HP\Downloads\proyecto\imagenes\Captura de pantalla 2025-09-16 224647.png" alt="Neil Steve Manya Carreño">
+                </div>
+                <p>Neil Steve Manya Carreño</p>
+            </div>
+            
+            <div class="team-member">
+                <div class="member-photo">
+                    <img src="C:\Users\HP\Downloads\proyecto\imagenes\Captura de pantalla 2025-09-16 224501.png" alt="Diego Isaias Gutierrez Ruiz">
+                </div>
+                <p>Diego Isaias Gutierrez Ruiz</p>
+            </div>
+            
+            <div class="team-member">
+                <div class="member-photo">
+                    <img src="C:\Users\HP\Downloads\proyecto\imagenes\ecf41a87-4364-4e19-84c7-0e6001724830.jpeg" alt="Oscar Jhosue Pastor Quispe">
+                </div>
+                <p>Oscar Jhosue Pastor Quispe</p>
+            </div>
+            
+            <div class="team-member">
+                <div class="member-photo">
+                    <img src="C:\Users\HP\Downloads\proyecto\imagenes\Captura de pantalla 2025-09-16 225533.png" alt="Joaquin Alessandro Quispirroca Bejarano">
+                </div>
+                <p>Joaquin Alessandro Quispirroca Bejarano</p>
+            </div>
+            
+            <div class="team-member">
+                <div class="member-photo">
+                    <img src="C:\Users\HP\Downloads\proyecto\imagenes\rodrigo.jpg" alt="Rodrigo Sly Arenas Villavicencio">
+                </div>
+                <p>Rodrigo Sly Arenas Villavicencio</p>
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <h2><i class="fas fa-bullseye"></i> Objetivo</h2>
+            <p>Diseñar un sistema web para la gestión de inventario de una tienda (actualización de stock, eliminación de artículos y gestión de usuarios).</p>
+        </section>
+        
+        <section class="content-section">
+            <h2><i class="fas fa-tools"></i> Herramientas Utilizadas</h2>
+            <div class="tools-grid">
+                <div class="tool-item">
+                    <span class="icon"><i class="fas fa-database"></i></span> SQL Server → Base de datos relacional
+                </div>
+                <div class="tool-item">
+                    <span class="icon"><i class="fas fa-code"></i></span> Visual Studio 2022 → Desarrollo del software
+                </div>
+                <div class="tool-item">
+                    <span class="icon"><i class="fab fa-github"></i></span> GitHub → Publicación y control de versiones
+                </div>
+                <div class="tool-item">
+                    <span class="icon"><i class="fas fa-robot"></i></span> IA (DeepSeek) → Generación de código inicial
+                </div>
+            </div>
+        </section>
+        
+        <!-- Mapa de árbol mejorado -->
+        <section class="content-section">
+            <h2><i class="fas fa-sitemap"></i> Mapa Jerárquico de las Tablas</h2>
+            <p>Orden de creación y dependencia de las tablas en la base de datos:</p>
+            
+            <div class="tree-diagram">
+                <div class="tree">
+                    <!-- Nivel 1: Tablas raíz -->
+                    <div class="tree-level">
+                        <div class="tree-node root-node">
+                            Cliente
+                            <div class="tree-relationship">Tabla raíz</div>
+                        </div>
+                        <div class="tree-node root-node">
+                            Empleado
+                            <div class="tree-relationship">Tabla raíz</div>
+                        </div>
+                        <div class="tree-node root-node">
+                            Proveedor
+                            <div class="tree-relationship">Tabla raíz</div>
+                        </div>
+                        <div class="tree-node root-node">
+                            Categoria
+                            <div class="tree-relationship">Tabla raíz</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Nivel 2: Tablas dependientes -->
+                    <div class="tree-level">
+                        <div class="tree-node dependent-node">
+                            VENTAS
+                            <div class="tree-relationship">Depende de Cliente y Empleado</div>
+                        </div>
+                        <div class="tree-node dependent-node">
+                            Producto
+                            <div class="tree-relationship">Depende de Proveedor y Categoria</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Nivel 3: Tablas puente -->
+                    <div class="tree-level">
+                        <div class="tree-node bridge-node">
+                            tblDetalleVenta
+                            <div class="tree-relationship">Depende de VENTAS y Producto</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Conectores -->
+                    <div class="connectors">
+                        <!-- Conectores desde Cliente y Empleado a VENTAS -->
+                        <div class="vertical-connector" style="left: 18%; height: 40px; top: 70px;"></div>
+                        <div class="vertical-connector" style="left: 43%; height: 40px; top: 70px;"></div>
+                        <div class="horizontal-connector" style="left: 18%; width: 25%; top: 110px;"></div>
+                        
+                        <!-- Conectores desde Proveedor y Categoria a Producto -->
+                        <div class="vertical-connector" style="left: 68%; height: 40px; top: 70px;"></div>
+                        <div class="vertical-connector" style="left: 93%; height: 40px; top: 70px;"></div>
+                        <div class="horizontal-connector" style="left: 68%; width: 25%; top: 110px;"></div>
+                        
+                        <!-- Conectores desde VENTAS y Producto a tblDetalleVenta -->
+                        <div class="vertical-connector" style="left: 30%; height: 40px; top: 190px;"></div>
+                        <div class="vertical-connector" style="left: 80%; height: 40px; top: 190px;"></div>
+                        <div class="horizontal-connector" style="left: 30%; width: 50%; top: 230px;"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <p><strong>Interpretación:</strong></p>
+                <ul>
+                    <li>Primero se crean Cliente, Empleado, Proveedor y Categoria (no tienen FKs)</li>
+                    <li>Luego se crea Producto (depende de Proveedor y Categoria)</li>
+                    <li>Después se crea VENTAS (depende de Cliente y Empleado)</li>
+                    <li>Finalmente se crea tblDetalleVenta (depende de Producto y VENTAS)</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Sección de evidencias -->
+        <section class="content-section evidence-section">
+            <h2><i class="fas fa-camera"></i> Evidencias del Proyecto</h2>
+            <p>Capturas del proceso de desarrollo y resultados finales:</p>
+            
+            <div class="evidence-grid">
+                <div class="evidence-item">
+                    <img src="C:\Users\HP\Downloads\proyecto\imagenes\Captura de pantalla 2025-09-16 231616.png" alt="Modelo Relacional">
+                    <div class="evidence-title">Modelo Relacional</div>
+                    <p>Diseño de la estructura de la base de datos</p>
+                </div>
+                
+                <div class="evidence-item">
+                    <img src="C:\Users\HP\Downloads\proyecto\imagenes\Captura de pantalla 2025-09-16 231745.png" alt="Código SQL">
+                    <div class="evidence-title">Código SQL</div>
+                    <p>Scripts de creación de tablas y relaciones</p>
+                </div>
+                
+                <div class="evidence-item">
+                    <img src="C:\Users\HP\Downloads\proyecto\imagenes\Captura de pantalla 2025-09-16 231909.png" alt="Interfaz de Usuario">
+                    <div class="evidence-title">Interfaz de Usuario</div>
+                    <p>Vista de la aplicación funcionando</p>
+                </div>
+                
+                <div class="evidence-item">
+                    <img src="C:\Users\HP\Downloads\proyecto\imagenes\github.jpg" alt="Repositorio GitHub">
+                    <div class="evidence-title">Repositorio GitHub</div>
+                    <p>Control de versiones del proyecto</p>
+                </div>
+                
+                <div class="evidence-item">
+                    <img src="C:\Users\HP\Downloads\proyecto\imagenes\diagrama_clases.jpg" alt="Diagrama de Clases">
+                    <div class="evidence-title">Diagrama de Clases</div>
+                    <p>Estructura de clases del sistema</p>
+                </div>
+                
+                <div class="evidence-item">
+                    <img src="C:\Users\HP\Downloads\proyecto\imagenes\Captura de pantalla 2025-09-16 232055.png" alt="Pruebas del Sistema">
+                    <div class="evidence-title">Pruebas del Sistema</div>
+                    <p>Validación de funcionalidades</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Línea de tiempo -->
+        <section class="content-section">
+            <h2><i class="fas fa-history"></i> Línea de Tiempo del Proyecto</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Miércoles 18 Sept - Diseño Inicial</div>
+                    <div class="timeline-content">
+                        <h3>Planificación y diseño de la base de datos</h3>
+                        <p>Definición de requisitos, diseño del modelo entidad-relación y creación del diagrama de la base de datos.</p>
+                        <p class="difficulty"><i class="fas fa-exclamation-circle"></i> Dificultad: Definir las relaciones correctas entre tablas</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Jueves 19 Sept - Implementación BD</div>
+                    <div class="timeline-content">
+                        <h3>Creación de tablas y relaciones</h3>
+                        <p>Implementación física de la base de datos en SQL Server, creación de tablas, constraints y relaciones foreign key.</p>
+                        <p class="difficulty"><i class="fas fa-exclamation-circle"></i> Dificultad: Problemas con la sintaxis de FOREIGN KEY constraints</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Viernes 20 Sept - Desarrollo Backend</div>
+                    <div class="timeline-content">
+                        <h3>Conexión y clases de acceso a datos</h3>
+                        <p>Desarrollo de la capa de acceso a datos en C#, creación de la clase de conexión y métodos para CRUD operations.</p>
+                        <p class="difficulty"><i class="fas fa-exclamation-circle"></i> Dificultad: Establecer la conexión correcta entre Visual Studio y SQL Server</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Sábado 21 Sept - Interfaz de Usuario</div>
+                    <div class="timeline-content">
+                        <h3>Diseño de formularios y vistas</h3>
+                        <p>Creación de las interfaces de usuario en ASP.NET Web Forms, diseño de formularios para gestión de productos y usuarios.</p>
+                        <p class="difficulty"><i class="fas fa-exclamation-circle"></i> Dificultad: Sincronización entre el equipo en el diseño de interfaces</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Domingo 22 Sept - Integración</div>
+                    <div class="timeline-content">
+                        <h3>Integración frontend-backend</h3>
+                        <p>Conexión de la interfaz de usuario con la capa de acceso a datos, implementación de funcionalidades CRUD completas.</p>
+                        <p class="difficulty"><i class="fas fa-exclamation-circle"></i> Dificultad: Depuración de errores de vinculación entre capas</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Lunes 23 Sept - Pruebas y Depuración</div>
+                    <div class="timeline-content">
+                        <h3>Testing y corrección de errores</h3>
+                        <p>Pruebas integrales del sistema, detección y corrección de bugs, optimización de consultas SQL.</p>
+                        <p class="difficulty"><i class="fas fa-exclamation-circle"></i> Dificultad: Resolver problemas de concurrencia en la base de datos</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Martes 24 Sept - Documentación</div>
+                    <div class="timeline-content">
+                        <h3>Documentación y preparación para entrega</h3>
+                        <p>Elaboración de documentación técnica y manual de usuario, preparación de la presentación final.</p>
+                        <p class="difficulty"><i class="fas fa-exclamation-circle"></i> Dificultad: Coordinar la finalización de todos los componentes a tiempo</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <h2><i class="fas fa-tasks"></i> Etapas del Desarrollo</h2>
+            <div class="stages">
+                <div class="stage">
+                    <div class="stage-number">1</div>
+                    <p>Diseño de la base de datos – Creación de TIENDAUC con más de 5 tablas.</p>
+                </div>
+                <div class="stage">
+                    <div class="stage-number">2</div>
+                    <p>Uso de IA – Código inicial con DeepSeek, ajustado manualmente.</p>
+                </div>
+                <div class="stage">
+                    <div class="stage-number">3</div>
+                    <p>Implementación – Desarrollo en Visual Studio con conexión a SQL.</p>
+                </div>
+                <div class="stage">
+                    <div class="stage-number">4</div>
+                    <p>Publicación – Repositorio en GitHub con scripts y versiones del proyecto.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <h2><i class="fas fa-check-circle"></i> Conclusiones</h2>
+            <div class="conclusions">
+                <ul>
+                    <li>Una base de datos bien diseñada asegura el funcionamiento del sistema.</li>
+                    <li>Visual Studio 2022 facilitó la integración con SQL Server.</li>
+                    <li>GitHub limita la subida de bases de datos completas.</li>
+                    <li>El sistema cumplió objetivos, pero la publicación en SOMEE tuvo restricciones.</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <h2><i class="fas fa-lightbulb"></i> Recomendaciones</h2>
+            <div class="recommendations">
+                <ul>
+                    <li>Homologar versiones de C# en el equipo.</li>
+                    <li>Documentar la programación como algoritmo.</li>
+                    <li>Explorar otras plataformas de publicación.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#ffffff"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": true
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#ffffff",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": true,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    }
+                },
+                "retina_detect": true
+            });
+        });
+    </script>
 </body>
 </html>
